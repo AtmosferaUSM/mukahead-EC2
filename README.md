@@ -49,11 +49,17 @@ Follow these steps to set up an AWS EC2 instance and connect it to a private Git
         ```
     2. On your EC2 instance, navigate to the `/home/ubuntu` directory:
         ```bash
-        aws s3 cp s3://mukahead-ec2-rpi/mukahead-EC2/ . --recursive
+        # Clone into a temporary directory
+        git clone git@github.com:AtmosferaUSM/mukahead-EC2.git mukahead-EC2-temp
+
+        # Move the files to the target directory
+        mv mukahead-EC2-temp/* mukahead-EC2-temp/.git* /home/ubuntu/
+
+        # Remove the temporary directory
+        rmdir mukahead-EC2-temp
         ```
     3. Create required directories:
         ```bash
-        mkdir -p data/mukahead
         cd data/mukahead
         mkdir archive raw results summaries
         ```
@@ -67,6 +73,13 @@ Follow these steps to set up an AWS EC2 instance and connect it to a private Git
         cd raw
         aws s3 cp s3://ec-mukahead-ghg/2016-04-10T113000_AIU-1552.ghg .
         ```
+    5. Navigate to the `prj` folder and run the commands below:
+        ```bash
+        cd /home/ubuntu/eddypro-engine/prj
+        make rp
+        make fcc
+        ```
+        
     6. Provide execution permissions to the script and run it:
         ```bash
         cd /home/ubuntu
