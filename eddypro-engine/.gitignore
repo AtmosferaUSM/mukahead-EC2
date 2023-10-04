@@ -1,0 +1,24 @@
+# gitignore for EddyPro engine
+# created by gerardo fratini for Fortran/C::B
+
+### FORTRAN ###
+*.exe
+*.mod
+*.o
+
+### MAC ###
+*.DS_Store
+*.db
+
+### MISC ###
+*.bak
+
+### EP ###
+*.eddypro
+
+### DIRS AND SPECIFIC FILES###
+bin
+mod
+obj
+ep_engine_devtools.py
+ship_exes.sh
